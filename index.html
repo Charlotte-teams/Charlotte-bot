@@ -2,14 +2,118 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Мой первый сайт</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charlotte Bot</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; background-color: #f0f0f0; }
-        h1 { color: #333; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121214;
+            color: #ffffff;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 700px;
+            background-color: #1a1a1e;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        h1 {
+            color: #9945FF;
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            /* Фиолетовая обводка для заголовка */
+            text-shadow: 
+                -2px -2px 0 #7A22E0,  
+                 2px -2px 0 #7A22E0,
+                -2px  2px 0 #7A22E0,
+                 2px  2px 0 #7A22E0,
+                 0px  0px 15px rgba(153,69,255,0.6);
+        }
+        .intro {
+            font-size: 1.15rem;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #2d2d34;
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            /* Фиолетовая обводка для названий пунктов */
+            text-shadow: 
+                -1px -1px 0 #9945FF,  
+                 1px -1px 0 #9945FF,
+                -1px  1px 0 #9945FF,
+                 1px  1px 0 #9945FF;
+        }
+        .section p {
+            margin: 8px 0;
+            padding-left: 5px;
+            color: #d1d1d6;
+        }
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #2d2d34;
+            font-style: italic;
+            color: #a1a1aa;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-    <h1>Привет, мир!</h1>
-    <p>Этот сайт работает на GitHub Pages.</p>
+
+<div class="container">
+    <h1>🤖 Charlotte Bot</h1>
+    
+    <div class="intro">
+        Привет! Я — Charlotte bot. Я тут, чтобы сделать ваш сервер уютнее, удобнее или веселее. Я работаю на честных началах, не шпионю и стараюсь не бесить. Вот на чем строятся наши отношения:
+    </div>
+
+    <div class="section">
+        <div class="section-title">1. 👁️ Что я вижу и знаю</div>
+        <p>• Я читаю сообщения, только если вы меня позвали (упомянули) или если вы написали команду в канале, где я работаю.</p>
+        <p>• Я запоминаю ID пользователя, его никнейм и то, что он пишет в контексте моих команд (например, чтобы выдать роль или начислить опыт).</p>
+        <p>• Я НЕ читаю ваши личные сообщения (DM) и не слежу за вами в каналах, где меня нет.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title">2. 🔐 Данные и безопасность</div>
+        <p>• Мне нужны ваши данные, чтобы работать (например, чтобы знать, кому дать роль).</p>
+        <p>• Я не передаю эти данные третьим лицам. Вообще.</p>
+        <p>• Всё, что я храню — это маленькие записи (логи), чтобы я не забыл, кто есть кто.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title">3. 🚫 Что я делать НЕ буду</div>
+        <p>• Спамить в ЛС (приватки).</p>
+        <p>• Удалять сообщения просто так (только если вы просите меня модерировать).</p>
+        <p>• Собирать конфиденциальную информацию (пароли, адреса и т.д.).</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title">4. 🛠️ Управление</div>
+        <p>• Вы можете в любой момент выгнать меня с сервера, и я забуду всё, что с ним связано.</p>
+        <p>• Если что-то сломалось, напишите Шарлоте, я постараюсь починиться.</p>
+    </div>
+
+    <div class="footer">
+        Продолжая использовать меня, вы соглашаетесь с тем, что я иногда могу тупить, но я стараюсь!
+    </div>
+</div>
+
 </body>
 </html>
+
