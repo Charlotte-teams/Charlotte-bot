@@ -23,9 +23,10 @@
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            display: none; 
+            display: none; /* Скрыто по умолчанию */
+            width: 100%;
         }
-     
+        /* Окно выбора языка */
         .lang-select-box {
             text-align: center;
             background-color: #1a1a1e;
@@ -58,7 +59,7 @@
             box-shadow: 0 0 15px rgba(153,69,255,0.6);
             transform: translateY(-2px);
         }
-  
+        /* Стили контента */
         h1 {
             color: #9945FF;
             text-align: center;
@@ -86,6 +87,29 @@
             margin: 8px 0;
             padding-left: 5px;
             color: #d1d1d6;
+        }
+        /* Кнопка приглашения бота */
+        .invite-btn-container {
+            text-align: center;
+            margin: 30px 0 15px 0;
+        }
+        .invite-btn {
+            display: inline-block;
+            background-color: #5865F2; /* Фирменный цвет Discord */
+            color: white;
+            text-decoration: none;
+            padding: 14px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(88, 101, 242, 0.3);
+            border: 2px solid #7289da;
+        }
+        .invite-btn:hover {
+            background-color: #4752c4;
+            box-shadow: 0 0 20px rgba(88, 101, 242, 0.6);
+            transform: translateY(-2px);
         }
         .footer {
             margin-top: 30px;
@@ -131,6 +155,11 @@
         <div id="p4"></div>
     </div>
 
+    <!-- Кнопка приглашения бота -->
+    <div class="invite-btn-container">
+        <a id="inviteLink" class="invite-btn" href="https://discord.com/oauth2/authorize?client_id=1497189619488522340&permissions=8&integration_type=0&scope=bot" target="_blank">Пригласить бота</a>
+    </div>
+
     <div id="botFooter" class="footer"></div>
 </div>
 
@@ -138,7 +167,7 @@
     // Переводы текстов
     const translations = {
         ru: {
-            intro: "Привет! Я — Charlotte bot. Я тут, чтобы сделать ваш сервер уютнее, удобнее или веселее. Я работаю на честных началах, не шпионю и стараюсь не бесить. Вот на чем строятся наши отношения:",
+            intro: "Привет! Я — Charlotte bot. Я тут, чтобы сделать ваш сервер уютнее, удобнее или веселее. Я работает на честных началах, не шпионю и стараюсь не бесить. Вот на чем строятся наши отношения:",
             t1: "1. 👁️ Что я вижу и знаю",
             p1: "<p>• Я читаю сообщения, только если вы меня позвали (упомянули) или если вы написали команду в канале, где я работаю.</p><p>• Я запоминаю ID пользователя, его никнейм и то, что он пишет в контексте моих команд (например, чтобы выдать роль или начислить опыт).</p><p>• Я НЕ читаю ваши личные сообщения (DM) и не слежу за вами в каналах, где меня нет.</p>",
             t2: "2. 🔐 Данные и безопасность",
@@ -146,7 +175,8 @@
             t3: "3. 🚫 Что я делать НЕ буду",
             p3: "<p>• Спамить в ЛС (приватки).</p><p>• Удалять сообщения просто так (только если вы просите меня модерировать).</p><p>• Собирать конфиденциальную информацию (пароли, адреса и т.д.).</p>",
             t4: "4. 🛠️ Управление",
-            p4: "<p>• Вы можете в любой момент выгнать меня с сервера, и я забыду всё, что с ним связано.</p><p>• Если что-то сломалось, напишите Шарлоте, я постараюсь починиться.</p>",
+            p4: "<p>• Вы можете в любой момент выгнать меня с сервера, и я забуду всё, что с ним связано.</p><p>• Если что-то сломалось, напишите Шарлоте, я постараюсь починиться.</p>",
+            invite: "Пригласить бота на сервер",
             footer: "Продолжая использовать меня, вы соглашаетесь с тем, что я иногда могу тупить, но я стараюсь!"
         },
         en: {
@@ -159,13 +189,14 @@
             p3: "<p>• Spam your DMs.</p><p>• Delete messages for no reason (only if requested for moderation purposes).</p><p>• Collect confidential information (passwords, addresses, etc.).</p>",
             t4: "4. 🛠️ Management",
             p4: "<p>• You can kick me from your server at any moment, and I will forget everything related to it.</p><p>• If something breaks, contact Charlotte, and I will try to fix it.</p>",
+            invite: "Invite bot to server",
             footer: "By continuing to use me, you agree that I might occasionally make mistakes, but I'm doing my best!"
         }
     };
 
-   
+    // Функция переключения языка
     function setLanguage(lang) {
-     
+        // Заполняем элементы текстом выбранного языка
         document.getElementById('botIntro').innerHTML = translations[lang].intro;
         document.getElementById('t1').innerHTML = translations[lang].t1;
         document.getElementById('p1').innerHTML = translations[lang].p1;
@@ -175,12 +206,14 @@
         document.getElementById('p3').innerHTML = translations[lang].p3;
         document.getElementById('t4').innerHTML = translations[lang].t4;
         document.getElementById('p4').innerHTML = translations[lang].p4;
+        document.getElementById('inviteLink').innerText = translations[lang].invite;
         document.getElementById('botFooter').innerHTML = translations[lang].footer;
 
         // Прячем выбор языка и показываем текст
         document.getElementById('langSelection').style.display = 'none';
-        document.getElementById('mainContent').style.style.display = 'block';
+        document.getElementById('mainContent').style.display = 'block';
         
+        // Корректируем выравнивание контента
         document.body.style.alignItems = 'flex-start';
     }
 </script>
