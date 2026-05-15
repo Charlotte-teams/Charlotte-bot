@@ -14,6 +14,8 @@
             padding: 40px 20px;
             display: flex;
             justify-content: center;
+            align-items: center;
+            min-height: 80vh;
         }
         .container {
             max-width: 700px;
@@ -21,19 +23,48 @@
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            display: none; 
         }
+     
+        .lang-select-box {
+            text-align: center;
+            background-color: #1a1a1e;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            max-width: 400px;
+            width: 100%;
+        }
+        .lang-title {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: #ffffff;
+            text-shadow: -1px -1px 0 #9945FF, 1px -1px 0 #9945FF, -1px 1px 0 #9945FF, 1px 1px 0 #9945FF;
+        }
+        .lang-btn {
+            background-color: #2d2d34;
+            color: white;
+            border: 2px solid #9945FF;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        .lang-btn:hover {
+            background-color: #9945FF;
+            box-shadow: 0 0 15px rgba(153,69,255,0.6);
+            transform: translateY(-2px);
+        }
+  
         h1 {
             color: #9945FF;
             text-align: center;
             font-size: 2.2rem;
             margin-bottom: 30px;
-            /* Фиолетовая обводка для заголовка */
-            text-shadow: 
-                -2px -2px 0 #7A22E0,  
-                 2px -2px 0 #7A22E0,
-                -2px  2px 0 #7A22E0,
-                 2px  2px 0 #7A22E0,
-                 0px  0px 15px rgba(153,69,255,0.6);
+            text-shadow: -2px -2px 0 #7A22E0, 2px -2px 0 #7A22E0, -2px 2px 0 #7A22E0, 2px 2px 0 #7A22E0, 0px 0px 15px rgba(153,69,255,0.6);
         }
         .intro {
             font-size: 1.15rem;
@@ -49,14 +80,7 @@
             font-weight: bold;
             color: #ffffff;
             margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            /* Фиолетовая обводка для названий пунктов */
-            text-shadow: 
-                -1px -1px 0 #9945FF,  
-                 1px -1px 0 #9945FF,
-                -1px  1px 0 #9945FF,
-                 1px  1px 0 #9945FF;
+            text-shadow: -1px -1px 0 #9945FF, 1px -1px 0 #9945FF, -1px 1px 0 #9945FF, 1px 1px 0 #9945FF;
         }
         .section p {
             margin: 8px 0;
@@ -75,45 +99,91 @@
 </head>
 <body>
 
-<div class="container">
-    <h1>🤖 Charlotte Bot</h1>
-    
-    <div class="intro">
-        Привет! Я — Charlotte bot. Я тут, чтобы сделать ваш сервер уютнее, удобнее или веселее. Я работаю на честных началах, не шпионю и стараюсь не бесить. Вот на чем строятся наши отношения:
-    </div>
-
-    <div class="section">
-        <div class="section-title">1. 👁️ Что я вижу и знаю</div>
-        <p>• Я читаю сообщения, только если вы меня позвали (упомянули) или если вы написали команду в канале, где я работаю.</p>
-        <p>• Я запоминаю ID пользователя, его никнейм и то, что он пишет в контексте моих команд (например, чтобы выдать роль или начислить опыт).</p>
-        <p>• Я НЕ читаю ваши личные сообщения (DM) и не слежу за вами в каналах, где меня нет.</p>
-    </div>
-
-    <div class="section">
-        <div class="section-title">2. 🔐 Данные и безопасность</div>
-        <p>• Мне нужны ваши данные, чтобы работать (например, чтобы знать, кому дать роль).</p>
-        <p>• Я не передаю эти данные третьим лицам. Вообще.</p>
-        <p>• Всё, что я храню — это маленькие записи (логи), чтобы я не забыл, кто есть кто.</p>
-    </div>
-
-    <div class="section">
-        <div class="section-title">3. 🚫 Что я делать НЕ буду</div>
-        <p>• Спамить в ЛС (приватки).</p>
-        <p>• Удалять сообщения просто так (только если вы просите меня модерировать).</p>
-        <p>• Собирать конфиденциальную информацию (пароли, адреса и т.д.).</p>
-    </div>
-
-    <div class="section">
-        <div class="section-title">4. 🛠️ Управление</div>
-        <p>• Вы можете в любой момент выгнать меня с сервера, и я забуду всё, что с ним связано.</p>
-        <p>• Если что-то сломалось, напишите Шарлоте, я постараюсь починиться.</p>
-    </div>
-
-    <div class="footer">
-        Продолжая использовать меня, вы соглашаетесь с тем, что я иногда могу тупить, но я стараюсь!
-    </div>
+<!-- Блок выбора языка -->
+<div id="langSelection" class="lang-select-box">
+    <div class="lang-title">На каком языке вы говорите?<br><span style="font-size: 1.2rem; color: #a1a1aa;">Which language do you speak?</span></div>
+    <button class="lang-btn" onclick="setLanguage('ru')">Русский</button>
+    <button class="lang-btn" onclick="setLanguage('en')">English</button>
 </div>
+
+<!-- Основной контейнер с текстом -->
+<div id="mainContent" class="container">
+    <h1 id="botTitle">🤖 Charlotte Bot</h1>
+    <div id="botIntro" class="intro"></div>
+    
+    <div class="section">
+        <div id="t1" class="section-title"></div>
+        <div id="p1"></div>
+    </div>
+
+    <div class="section">
+        <div id="t2" class="section-title"></div>
+        <div id="p2"></div>
+    </div>
+
+    <div class="section">
+        <div id="t3" class="section-title"></div>
+        <div id="p3"></div>
+    </div>
+
+    <div class="section">
+        <div id="t4" class="section-title"></div>
+        <div id="p4"></div>
+    </div>
+
+    <div id="botFooter" class="footer"></div>
+</div>
+
+<script>
+    // Переводы текстов
+    const translations = {
+        ru: {
+            intro: "Привет! Я — Charlotte bot. Я тут, чтобы сделать ваш сервер уютнее, удобнее или веселее. Я работаю на честных началах, не шпионю и стараюсь не бесить. Вот на чем строятся наши отношения:",
+            t1: "1. 👁️ Что я вижу и знаю",
+            p1: "<p>• Я читаю сообщения, только если вы меня позвали (упомянули) или если вы написали команду в канале, где я работаю.</p><p>• Я запоминаю ID пользователя, его никнейм и то, что он пишет в контексте моих команд (например, чтобы выдать роль или начислить опыт).</p><p>• Я НЕ читаю ваши личные сообщения (DM) и не слежу за вами в каналах, где меня нет.</p>",
+            t2: "2. 🔐 Данные и безопасность",
+            p2: "<p>• Мне нужны ваши данные, чтобы работать (например, чтобы знать, кому дать роль).</p><p>• Я не передаю эти данные третьим лицам. Вообще.</p><p>• Всё, что я храню — это маленькие записи (логи), чтобы я не забыл, кто есть кто.</p>",
+            t3: "3. 🚫 Что я делать НЕ буду",
+            p3: "<p>• Спамить в ЛС (приватки).</p><p>• Удалять сообщения просто так (только если вы просите меня модерировать).</p><p>• Собирать конфиденциальную информацию (пароли, адреса и т.д.).</p>",
+            t4: "4. 🛠️ Управление",
+            p4: "<p>• Вы можете в любой момент выгнать меня с сервера, и я забыду всё, что с ним связано.</p><p>• Если что-то сломалось, напишите Шарлоте, я постараюсь починиться.</p>",
+            footer: "Продолжая использовать меня, вы соглашаетесь с тем, что я иногда могу тупить, но я стараюсь!"
+        },
+        en: {
+            intro: "Hello! I am Charlotte bot. I'm here to make your server cozier, more convenient, or more fun. I work honestly, I don't spy, and I try not to be annoying. Here is what our relationship is built on:",
+            t1: "1. 👁️ What I see and know",
+            p1: "<p>• I only read messages if you mention me or if you type a command in a channel where I operate.</p><p>• I remember user IDs, nicknames, and context text from commands (e.g., to assign a role or grant XP).</p><p>• I DO NOT read your direct messages (DMs) and do not track you in channels where I am absent.</p>",
+            t2: "2. 🔐 Data and Security",
+            p2: "<p>• I need your data to work properly (e.g., to know who to give a role to).</p><p>• I do not share this data with third parties. At all.</p><p>• Everything I store consists of small log files so that I don't forget who is who.</p>",
+            t3: "3. 🚫 What I will NOT do",
+            p3: "<p>• Spam your DMs.</p><p>• Delete messages for no reason (only if requested for moderation purposes).</p><p>• Collect confidential information (passwords, addresses, etc.).</p>",
+            t4: "4. 🛠️ Management",
+            p4: "<p>• You can kick me from your server at any moment, and I will forget everything related to it.</p><p>• If something breaks, contact Charlotte, and I will try to fix it.</p>",
+            footer: "By continuing to use me, you agree that I might occasionally make mistakes, but I'm doing my best!"
+        }
+    };
+
+   
+    function setLanguage(lang) {
+     
+        document.getElementById('botIntro').innerHTML = translations[lang].intro;
+        document.getElementById('t1').innerHTML = translations[lang].t1;
+        document.getElementById('p1').innerHTML = translations[lang].p1;
+        document.getElementById('t2').innerHTML = translations[lang].t2;
+        document.getElementById('p2').innerHTML = translations[lang].p2;
+        document.getElementById('t3').innerHTML = translations[lang].t3;
+        document.getElementById('p3').innerHTML = translations[lang].p3;
+        document.getElementById('t4').innerHTML = translations[lang].t4;
+        document.getElementById('p4').innerHTML = translations[lang].p4;
+        document.getElementById('botFooter').innerHTML = translations[lang].footer;
+
+        // Прячем выбор языка и показываем текст
+        document.getElementById('langSelection').style.display = 'none';
+        document.getElementById('mainContent').style.style.display = 'block';
+        
+        document.body.style.alignItems = 'flex-start';
+    }
+</script>
 
 </body>
 </html>
-
